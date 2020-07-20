@@ -1,0 +1,16 @@
+Sub empty_cells_red()
+
+Dim myRange As Range
+Set myRange = Selection
+
+Dim i As Integer
+Dim max_i As Integer
+max_i = myRange.Columns.Count * myRange.Rows.Count
+
+For i = 0 To max_i
+    If IsEmpty(myRange(i).Value) = True Then
+        myRange(i).Interior.Color = RGB(255, 0, 0)
+    End If
+Next
+MsgBox "Done!"
+End Sub
