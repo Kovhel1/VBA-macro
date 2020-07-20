@@ -1,0 +1,17 @@
+Sub sum()
+Dim sum As Double
+sum = 0
+
+Dim myRange As Range
+Set myRange = Selection
+
+Dim i As Integer
+Dim max_i As Integer
+max_i = myRange.Columns.Count * myRange.Rows.Count
+For i = 0 To max_i
+    sum = sum + CInt(myRange(i).Value)
+Next
+
+Range("E1").Value = sum
+Range("E2").Value = max_i
+End Sub
