@@ -1,0 +1,21 @@
+Sub sum()
+    Dim sum As Double
+    sum = 0
+
+    Dim myRange As Range
+    Set myRange = Application.InputBox(prompt:="Ââåäèòå(âûäåëèòå) îáëàñòü", Type:=8)
+
+    Dim sumCell As Range
+    Set sumCell = Application.InputBox(prompt:="Ââåäèòå(âûäåëèòå) îáëàñòü, êóäà áóäåò çàïèñàíà ñóììà âûäåëåííûõ ýëåìåíòîâ", Type:=8)
+
+    Dim i As Integer
+    For i = 0 To max_i(myRange)
+        sum = sum + CInt(myRange(i).Value)
+    Next
+
+    For i = 0 To max_i(sumCell)
+        sumCell(i).Value = sum
+    Next
+
+    MsgBox "Done!"
+End Sub
