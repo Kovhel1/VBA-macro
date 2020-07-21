@@ -1,0 +1,16 @@
+'Ячейки с введенным значением окрашиваются цветом
+Sub Coloured_Value()
+  your_value = InputBox("input coloured value")
+
+  Dim myRange As Range
+  Set myRange = Application.InputBox(prompt:="Ââåäèòå(âûäåëèòå) îáëàñòü :", Type:=8)
+
+  Dim i As Integer
+
+  For i = 0 To max_i(myRange)
+      If CStr(myRange(i).Value) = CStr(your_value) Then
+          myRange(i).Interior.Color = RGB(100, 150, 200)
+      End If
+  Next
+  MsgBox ("Done!")
+End Sub
