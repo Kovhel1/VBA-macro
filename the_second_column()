@@ -1,0 +1,20 @@
+'Значения из одного столбика копируются в пустые ячейки другого
+
+Sub the_second_column()
+
+    Dim yourColumn As Range
+    Set yourColumn = Application.InputBox(prompt:="Ââåäèòå(âûäåëèòå) îáëàñòü ñ ïóñòûìè ÿ÷åéêàìè: ", Title:="Îáëàñòü: ", Type:=8)
+
+    Dim anotherColumn As Range
+    Set anotherColumn = Application.InputBox(prompt:="Ââåäèòå(âûäåëèòå) îáëàñòü êîïèðîâàíèÿ:", Title:="Îòêóäà êîïèðîâàòü ?", Type:=8)
+
+    Dim i As Integer
+    For i = 0 To max_i(yourColumn)
+        If IsEmpty(yourColumn(i).Value) = True Then
+            yourColumn(i).Value = CStr(anotherColumn(i).Value)
+        End If
+    Next
+
+    MsgBox "Done!"
+
+End Sub
