@@ -1,0 +1,4 @@
+'Количество элементов диапазона (выделенной области)
+Function max_i(yourRange)
+    max_i = yourRange.Columns.Count * yourRange.Rows.Count
+End Function
