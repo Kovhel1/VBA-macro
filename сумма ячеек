@@ -3,10 +3,10 @@ Sub sum()
     sum = 0
 
     Dim myRange As Range
-    Set myRange = Application.InputBox(prompt:="Ââåäèòå(âûäåëèòå) îáëàñòü", Type:=8)
+    Set myRange = Application.InputBox(prompt:="Введите (выделите) диапазон ячеек, которые будут суммироваться", Type:=8)
 
     Dim sumCell As Range
-    Set sumCell = Application.InputBox(prompt:="Ââåäèòå(âûäåëèòå) îáëàñòü, êóäà áóäåò çàïèñàíà ñóììà âûäåëåííûõ ýëåìåíòîâ", Type:=8)
+    Set sumCell = Application.InputBox(prompt:="Введите (выделите) диапазон ячеек, в которые будет записана сумма", Type:=8)
 
     Dim i As Integer
     For i = 0 To max_i(myRange)
