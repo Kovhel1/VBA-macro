@@ -1,0 +1,19 @@
+Sub Split_By_Rows()
+    Dim cell As Range, n As Long, i As Long, arr
+     
+    Application.ScreenUpdating = False
+    Set cell = ActiveCell
+    For i = 1 To Selection.Rows.Count
+        If InStr(cell, Chr(10)) Then
+            arr = Split(cell, Chr(10))         'делим текст по переносам в массив
+            n = UBound(arr)                    'определяем кол-во фрагментов
+            cell.Offset(1, 0).Resize(n, 1).EntireRow.Insert             'вставляем пустые строки ниже
+            cell.Resize(n + 1, 1) = WorksheetFunction.Transpose(arr)     'вводим в них данные из массива
+            Set cell = cell.Offset(n + 1, 0)                            'сдвигаемся на следующую ячейку
+        Else
+            Set cell = cell.Offset(1, 0)                             'сдвигаемся на следующую ячейку
+        End If
+    Next i
+    Selection.Cells(1, 1).Select
+    Application.ScreenUpdating = True
+End Sub
