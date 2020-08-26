@@ -1,0 +1,9 @@
+Sub delete_formula()
+ Dim myRange As Range
+ Set myRange = Application.InputBox(prompt:="Введите (выделите) значение ", Type:=8)
+    
+ Dim cell As Object
+ For Each cell In myRange
+    cell.Value = cell.Value
+ Next cell
+End Sub
