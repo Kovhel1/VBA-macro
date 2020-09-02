@@ -1,36 +1,44 @@
 Sub ОКПД2_short()
-On Error GoTo IndexOutOfRange
-Dim myRange As Range
-Set myRange = Application.InputBox(prompt:="Выделите(введите) нужный диапазон ", Type:=8)
-
-Dim cell As Object
-Dim cell_zapas As String
-Dim kod_number As Integer
-Dim kod As String
-
-For Each cell In myRange
+ On Error GoTo IndexOutOfRange
+ Dim myRange As Range
+ Set myRange = Application.InputBox(prompt:="Введите(выделите) ндиапазон ячеек", Type:=8)    
+ Dim cell As Object
+ Dim cell_zapas As String
+ Dim kod_number As Integer
+ Dim kod As String
+ Dim cell_kopy As String
+ Dim i As Integer
+ For Each cell In myRange
     cell.NumberFormat = "@"
+    cell.Value = Replace(cell, "из.", "")
+    cell.Value = Replace(cell, "из", "")
+    cell.Value = Replace(cell, "  ", " ")
+    cell.Value = WorksheetFunction.Trim(cell)
     cell_zapas = CStr(cell.Value)
     cell_value = Split(cell.Value, " ")
     number_of_kod = UBound(cell_value)
     Dim all_kods()
     ReDim all_kods(number_of_kod)
     For kod_number = 0 To number_of_kod
-        kod_value = Split(CStr(cell_value(kod_number)), ".")
+        kod_value = Split(CStr(cell_value(kod_number)), ".")           
+        For i = 0 To UBound(kod_value)
+            If Len(kod_value(i)) > 4 Then
+                cell.Interior.ColorIndex = 6
+            End If
+        Next
+        
         kod = kod_value(0) + "." + kod_value(1)
         all_kods(kod_number) = kod
-    Next
-    cell.Value = ""
-    For kod_number = 0 To number_of_kod
-        cell.Value = cell.Value + " " + all_kods(kod_number)
-    Next
+    Next   
+    cell.Value = Join(all_kods)
 HERE:
-    Erase all_kods
-  Next cell
-        
+    Erase all_kods        
+  Next cell        
 Exit Sub
 IndexOutOfRange:
   cell.Interior.ColorIndex = 6
   cell.Value = cell_zapas
   Resume HERE
 End Sub
+
+
