@@ -1,0 +1,31 @@
+
+Sub Macro():
+
+    Dim myRange, myRange2 As Range
+    Set myRange = Application.InputBox(prompt:="äèàïàçîí", Type:=8)
+    Set myRange2 = Application.InputBox(prompt:="äèàïàçîí2", Type:=8)
+    
+    Dim splitted_cell_array() As String
+
+    Dim cell As Object
+    Dim spl As Integer
+    Dim count As Integer
+    count = 0
+    
+    For Each cell In myRange:
+    
+            splitted_cell_array = Split(cell.Value, " ")
+            
+            For spl = 0 To UBound(splitted_cell_array):
+                If splitted_cell_array(spl) = "accuracy:" Then
+                        count = count + 1
+                        myRange2(count).Value = splitted_cell_array(spl + 1)
+                End If
+                
+                If splitted_cell_array(spl) = "val_accuracy:" Then
+                        count = count + 1
+                        myRange2(count).Value = splitted_cell_array(spl + 1)
+                End If
+            Next
+    Next
+End Sub
