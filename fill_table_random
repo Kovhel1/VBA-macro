@@ -1,0 +1,29 @@
+Sub filling()
+
+Dim i As Integer
+Dim j As Integer
+Dim last_date As String
+
+i = 1
+j = 1
+last_date = "01.01.2021"
+
+While i < 10000
+
+    If j < 10 Then
+        j = j + 1
+    Else
+        j = 1
+        last_date = DateAdd("d", 1, last_date)
+    End If
+    
+    
+    Cells(i, "A") = j
+    Cells(i, "B") = last_date
+    Cells(i, "C") = Int((100 * Rnd) - 100)
+    i = i + 1
+Wend
+    
+
+
+End Sub
